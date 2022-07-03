@@ -1,0 +1,84 @@
+<%= form_with method: "get" do |form| %>
+    <form>
+        <div class="mb-3">
+            <%= form.text_field :name, class:"form-control", placeholder:"name" %>
+        </div>
+
+        <div class="mb-3">
+            <%= form.text_field :country_code, class:"form-control", placeholder:"country code" %>
+        </div>
+
+        <%= form.submit "Submit", class:'btn btn-outline-primary' %>
+    </form>
+<% end %>
+<br/>
+
+<!--Gender-->
+<div class="mt-4 p-5 bg-success text-white rounded">
+    <h4>Gender</h4>
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <% @gender.each do |k, _| %>
+                <th scope="col"> <%=k%> </th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <% @gender.each do |_, v| %>
+                <td> <%=v%> </td>
+            <% end %>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<!--Age-->
+<div class="mt-4 p-5 bg-warning text-white rounded">
+    <h4>Age</h4>
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <% @age.each do |k, _| %>
+                <th scope="col"> <%=k%> </th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <% @age.each do |_, v| %>
+                <td> <%=v%> </td>
+            <% end %>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<!--Nationality-->
+<div class="mt-4 p-5 bg-danger text-white rounded">
+    <h4>Nationality</h4>
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <% @nationality.each do |k, _| %>
+                <th scope="col"> <%=k%> </th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <% if ! @nationality.empty? %>
+                <td> <%= @nationality['name'] %> </td>
+                
+                <% @nationality['country'].each do |d| %>
+                    <td> <%= d['country_id'] + ' (' + d['probability'].to_s + ')' %> </td>
+                <% end %>
+            <% end %>
+        </tr>
+    </tbody>
+    </table>
+</div>
