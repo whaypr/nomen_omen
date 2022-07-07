@@ -1,3 +1,10 @@
+<% if @submitted and @empty_name %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    You must enter a name!
+    </div>
+<% end %>
+
+
 <%= form_with method: "get" do |form| %>
     <form>
         <div class="mb-3">

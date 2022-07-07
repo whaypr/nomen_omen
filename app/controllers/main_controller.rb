@@ -3,13 +3,13 @@ require 'json'
 
 class MainController < ApplicationController
   def index  
-    @name = ""
-    @country_code = ""
-    @gender = Hash.new
-    @age = Hash.new
-    @nationality = Hash.new
-
+    @submitted = false
+    @submitted = true if params['commit'] == 'Submit'
+    @empty_name = true
     return if params[:name] == nil or params[:name] == ""
+
+    @empty_name = false
+
     params[:country_code] = "CZ" if params[:country_code] == ""
 
     @name = params[:name]
