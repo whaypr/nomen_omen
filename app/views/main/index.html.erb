@@ -20,93 +20,95 @@
 <% end %>
 
 
-<div class="text-center">
-    <div class="badge bg-primary text-wrap">
-        <p class="fs-5"> <%= @name.upcase%> </p>
-    </div>
-    <div class="badge bg-info text-wrap">
-        <p class="fs-5"> <%= @country_code.upcase%> </p>
-    </div>
-</div>
-
-
-<div class="container">
-  <div class="row align-items-start">
-    <div class="col">
-      
-        <!--Gender-->
-        <div class="mt-4 p-5 bg-success text-white rounded">
-            <h4>Gender</h4>
-
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <% @gender.slice("gender", "probability", "count").each do |k, _| %>
-                        <th scope="col"> <%=k%> </th>
-                    <% end %>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <% @gender.slice("gender", "probability", "count").each do |_, v| %>
-                        <td> <%=v%> </td>
-                    <% end %>
-                </tr>
-            </tbody>
-            </table>
+<% if ! @empty_name %>
+    <div class="text-center">
+        <div class="badge text-wrap", style='background-color: #525E75'>
+            <p class="fs-5"> <%= @name.upcase%> </p>
         </div>
-
-    </div>
-    <div class="col">
-      
-        <!--Age-->
-        <div class="mt-4 p-5 bg-warning text-white rounded">
-            <h4>Age</h4>
-
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <% @age.slice("age", "count").each do |k, _| %>
-                        <th scope="col"> <%=k%> </th>
-                    <% end %>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <% @age.slice("age", "count").each do |_, v| %>
-                        <td> <%=v%> </td>
-                    <% end %>
-                </tr>
-            </tbody>
-            </table>
+        <div class="badge text-wrap", style='background-color: #525E75'>
+            <p class="fs-5"> <%= @country_code.upcase%> </p>
         </div>
-
     </div>
-    <div class="col">
-      
-        <!--Nationality-->
-        <div class="mt-4 p-5 bg-danger text-white rounded">
-            <h4>Nationality</h4>
 
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <% @nationality.slice("country").each do |k, _| %>
-                        <th scope="col"> <%=k%> </th>
-                    <% end %>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <% if ! @nationality.empty? %>
-                        <% @nationality['country'].each do |d| %>
-                            <td> <%= d['country_id'] + ' (' + (d['probability']* 100).round(2).to_s + '%)' %> </td>
+
+    <div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+        
+            <!--Gender-->
+            <div class="mt-4 p-5 text-white rounded", style='background-color: #FF6B6B'>
+                <h4>Gender</h4>
+
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <% @gender.slice("gender", "probability", "count").each do |k, _| %>
+                            <th scope="col"> <%=k%> </th>
                         <% end %>
-                    <% end %>
-                </tr>
-            </tbody>
-            </table>
-        </div>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <% @gender.slice("gender", "probability", "count").each do |_, v| %>
+                            <td> <%=v%> </td>
+                        <% end %>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
 
+        </div>
+        <div class="col">
+        
+            <!--Age-->
+            <div class="mt-4 p-5 text-white rounded", style='background-color: #6BCB77'>
+                <h4>Age</h4>
+
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <% @age.slice("age", "count").each do |k, _| %>
+                            <th scope="col"> <%=k%> </th>
+                        <% end %>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <% @age.slice("age", "count").each do |_, v| %>
+                            <td> <%=v%> </td>
+                        <% end %>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col">
+        
+            <!--Nationality-->
+            <div class="mt-4 p-5 text-white rounded", style='background-color: #FFD93D'>
+                <h4>Nationality</h4>
+
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <% @nationality.slice("country").each do |k, _| %>
+                            <th scope="col"> <%=k%> </th>
+                        <% end %>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <% if ! @nationality.empty? %>
+                            <% @nationality['country'].each do |d| %>
+                                <td> <%= d['country_id'] + ' (' + (d['probability']* 100).round(2).to_s + '%)' %> </td>
+                            <% end %>
+                        <% end %>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
-  </div>
+<% end %>
